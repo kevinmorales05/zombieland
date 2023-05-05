@@ -1102,6 +1102,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 8497874734737821283, guid: 8fed78edc8c9542a7ab807595b22f462,
     type: 3}
   roundNumber: {fileID: 288603778}
+  endScreen: {fileID: 1514389034}
+  roundSurvived: {fileID: 2014054474}
 --- !u!4 &822052226
 Transform:
   m_ObjectHideFlags: 0
@@ -1380,7 +1382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1514389035
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2510,6 +2512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   healthText: {fileID: 696672702}
+  gameManager: {fileID: 822052225}
 --- !u!4 &5771363024124953263
 Transform:
   m_ObjectHideFlags: 0
