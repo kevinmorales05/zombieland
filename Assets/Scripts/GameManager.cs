@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,15 @@ public class GameManager : MonoBehaviour
     public GameObject[] spawnPoints;
 
     public GameObject enemyPrefab;
+
+    //UI elements
+    public Text roundNumber;
+
+    public GameObject endScreen;
+
+        public Text roundSurvived;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +32,7 @@ public class GameManager : MonoBehaviour
         {
             round++;
             NextWave(round);
+            roundNumber.text = "Round: " + round.ToString();
         }
     }
     public void NextWave(int round) 
@@ -35,9 +46,14 @@ public class GameManager : MonoBehaviour
             Debug.Log("Create a new Zombie");
             enemiesAlive++;
         }
-       
+ 
+    }
 
-
-
+    public void EndGame()
+    {
+        Time.timeScale = 0;
+        Cursor.lockState =  CursorLockMode.None;
+        endScreen.SetActive(true);
+        roundSurvived.text = round.ToString();
     }
 }
