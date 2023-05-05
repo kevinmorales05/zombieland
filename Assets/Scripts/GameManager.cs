@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -16,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject endScreen;
 
-        public Text roundSurvived;
+    public Text roundSurvived;
 
 
     // Start is called before the first frame update
@@ -47,6 +49,12 @@ public class GameManager : MonoBehaviour
             enemiesAlive++;
         }
  
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1; //if not the game frozen
+        SceneManager.LoadScene(0);
     }
 
     public void EndGame()
