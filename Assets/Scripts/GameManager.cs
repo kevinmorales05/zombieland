@@ -54,14 +54,20 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1; //if not the game frozen
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void EndGame()
     {
-        Time.timeScale = 0;
+        Time.timeScale = 0; //0 is to stop the game
         Cursor.lockState =  CursorLockMode.None;
         endScreen.SetActive(true);
         roundSurvived.text = round.ToString();
+    }
+
+    public void goMainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
     }
 }
