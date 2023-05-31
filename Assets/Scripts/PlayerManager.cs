@@ -15,6 +15,30 @@ public class PlayerManager : MonoBehaviour
 
     public GameManager gameManager;
 
+    public GameObject playerCamera;
+
+    private float shakeTime;
+    private float shakeDuration;
+    private Quaternion playerCameraOriginalPosition;
+
+    private void Start()
+    {
+        playerCameraOriginalPosition = playerCamera.transform.localRotation;
+    }
+    private void Update() 
+    {
+       if(shakeTime < shakeDuration)
+       {
+            shakeTime += Time.deltaTime;
+            CameraShake();
+       }
+       else if (playerCamera.transform.localRotation != playerCameraOriginalPosition) 
+       {
+            playerCamera.transform.localRotation = playerCameraOriginalPosition;
+       }
+        
+    }
+
     public void Hit(float damage){
         health -= damage;
         healthText.text = "Health " + health.ToString();
@@ -23,6 +47,15 @@ public class PlayerManager : MonoBehaviour
             //SceneManager.LoadScene(0);
             gameManager.EndGame();
         }
+        else
+        {
+            shakeTime = 0;
+            shakeDuration = 0.2f;
+        }
+    }
+    public void CameraShake()
+    {
+        playerCamera.transform.localRotation = Quaternion.Euler(Random.Range(-2,2), 0, 0);
     }
 
     
