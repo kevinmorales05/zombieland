@@ -22,6 +22,13 @@ public class TouchPlayerMovement : MonoBehaviour
     private Vector2 moveInput;
 
     private Vector2 moveTouchStartPosition;
+    //look input
+    private Vector2 lookInput;
+    //camera sensitive
+    public float cameraSensitivity;
+    private float cameraPitch;
+    //character camera
+    public Transform characterCamera;
 
     void Start()
     {
@@ -38,6 +45,10 @@ public class TouchPlayerMovement : MonoBehaviour
         if (leftFingerID != -1) 
         {
             Move();
+        }
+        if(rightFingerID != -1) 
+        {
+            lookAround();
         }
         
     }
@@ -57,6 +68,10 @@ public class TouchPlayerMovement : MonoBehaviour
                     leftFingerID = t.fingerId;
                     moveTouchStartPosition = t.position;
                 }
+                else if (t.position.x > halfScreenWidth && rightFingerID == -1)
+                {
+                    rightFingerID = t.fingerId;
+                }
             }
             if (t.phase == TouchPhase.Canceled)
             {
@@ -68,14 +83,25 @@ public class TouchPlayerMovement : MonoBehaviour
                 {
                     moveInput = t.position - moveTouchStartPosition;
                 }
+                else if (rightFingerID == t.fingerId) 
+                {
+                    lookInput = t.deltaPosition * cameraSensitivity * Time.deltaTime;
+                }
             }
             if (t.phase == TouchPhase.Stationary)
             {
-
+                if (t.fingerId == rightFingerID)
+                {
+                    lookInput = Vector2.zero;
+                }
             }
             if (t.phase == TouchPhase.Ended)
             {
                 if(leftFingerID == t.fingerId)
+                {
+                    leftFingerID = -1;
+                }
+                if (rightFingerID == t.fingerId)
                 {
                     leftFingerID = -1;
                 }
@@ -101,5 +127,13 @@ public class TouchPlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded) {
             velocity.y = Mathf.Sqrt(jumpHeight * (-2) * gravity);
         }
+    }
+    void lookAround()
+    {
+        
+        cameraPitch = Mathf.Clamp(cameraPitch - lookInput.y, -90f, 90f);
+        characterCamera.localRotation = Quaternion.Euler(cameraPitch, 0, 0);
+        transform.Rotate(transform.up, -lookInput.x, 0.0f);
+
     }
 }

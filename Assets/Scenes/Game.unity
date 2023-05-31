@@ -2775,8 +2775,10 @@ MonoBehaviour:
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   jumpHeight: 2
+  cameraSensitivity: 10
+  characterCamera: {fileID: 8950662434428961333}
 --- !u!4 &5771363024124953263
 Transform:
   m_ObjectHideFlags: 0
