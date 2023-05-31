@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public Text roundSurvived;
 
+    public GameObject pauseMenu;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,10 @@ public class GameManager : MonoBehaviour
             round++;
             NextWave(round);
             roundNumber.text = "Round: " + round.ToString();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            Pause();
         }
     }
     public void NextWave(int round) 
@@ -63,6 +69,20 @@ public class GameManager : MonoBehaviour
         Cursor.lockState =  CursorLockMode.None;
         endScreen.SetActive(true);
         roundSurvived.text = round.ToString();
+    }
+    public void Pause()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+
+    }
+    public void Continue()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     public void goMainMenu()
