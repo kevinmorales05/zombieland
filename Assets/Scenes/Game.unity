@@ -682,7 +682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cd8a05ef6bc466b8a97e1b8ec69ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sensitivity: 0
+  Sensitivity: 10
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -2694,7 +2694,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5734261629144277785}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8cd8a05ef6bc466b8a97e1b8ec69ce3, type: 3}
   m_Name: 
@@ -2775,7 +2775,7 @@ MonoBehaviour:
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   jumpHeight: 2
   cameraSensitivity: 10
   characterCamera: {fileID: 8950662434428961333}
