@@ -20,6 +20,8 @@ public class PlayerManager : MonoBehaviour
     private float shakeTime;
     private float shakeDuration;
     private Quaternion playerCameraOriginalPosition;
+    //for the hurt pannel
+    public CanvasGroup hurtPanel;
 
     private void Start()
     {
@@ -27,6 +29,10 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update() 
     {
+       if(hurtPanel.alpha > 0)
+       {
+            hurtPanel.alpha -= Time.deltaTime;
+       }
        if(shakeTime < shakeDuration)
        {
             shakeTime += Time.deltaTime;
@@ -51,6 +57,7 @@ public class PlayerManager : MonoBehaviour
         {
             shakeTime = 0;
             shakeDuration = 0.2f;
+            hurtPanel.alpha=1;
         }
     }
     public void CameraShake()
