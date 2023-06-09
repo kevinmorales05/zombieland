@@ -11,6 +11,11 @@ public class WeaponManager : MonoBehaviour
     public float damage = 25f;
 
     public Animator weaponAnimator;
+
+    public ParticleSystem muzzleFlash;
+
+    public GameObject hitParticles;
+
     void Start()
     {
         
@@ -29,6 +34,8 @@ public class WeaponManager : MonoBehaviour
     }
     void Shoot()
     {
+    
+        muzzleFlash.Play();
         weaponAnimator.SetBool("isShooting", true);
         RaycastHit hit;
         if(Physics.Raycast(playerCam.transform.position, transform.forward, out hit, range)){
@@ -36,6 +43,10 @@ public class WeaponManager : MonoBehaviour
             EnemyManager enemyManager =  hit.transform.GetComponent<EnemyManager>();
             if (enemyManager != null) {
                 enemyManager.Hit(damage);
+                GameObject  instParticles = Instantiate(hitParticles, hit.point, Quaternion.LookRotation(hit.normal));
+                instParticles.transform.parent = hit.transform;
+
+                Destroy(instParticles, 2f);
             }
         }
         
