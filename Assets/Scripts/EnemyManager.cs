@@ -19,6 +19,13 @@ public class EnemyManager : MonoBehaviour
     //logic for the zombies health bar
     public Slider slider;
 
+    public bool playerInReach;
+
+    public float attackDelayTimer;
+
+    public float delayBetweenAttacks;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,8 +55,38 @@ public class EnemyManager : MonoBehaviour
             if (collision.gameObject == player)
             {
                 Debug.Log("Player hit!");
-                player.GetComponent<PlayerManager>().Hit(damage);
+                //player.GetComponent<PlayerManager>().Hit(damage);
+                playerInReach = true;
+
             }
+        }
+    }
+
+    private void OnCollisionStay(Collision collision) {
+        if (playerInReach)
+        {
+            attackDelayTimer += Time.deltaTime;
+        }
+
+        if(attackDelayTimer >= delayBetweenAttacks - attackDelayTimer && attackDelayTimer<= delayBetweenAttacks && playerInReach)
+        {
+            enemyAnimator.SetTrigger("isAttacking");
+        }
+
+        if(attackDelayTimer >= 0.5f && playerInReach)
+        {
+            player.GetComponent<PlayerManager>().Hit(damage);
+            attackDelayTimer = 0;
+
+        }
+    }
+
+    private void  OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject == player) 
+        {
+            playerInReach = false;
+            attackDelayTimer = 0;
         }
     }
 
