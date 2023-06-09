@@ -16,9 +16,14 @@ public class WeaponManager : MonoBehaviour
 
     public GameObject hitParticles;
 
+    public AudioClip gunShot;
+
+    public AudioSource audioSource;
+
+
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,7 +40,9 @@ public class WeaponManager : MonoBehaviour
     void Shoot()
     {
     
+        
         muzzleFlash.Play();
+        audioSource.PlayOneShot(gunShot);
         weaponAnimator.SetBool("isShooting", true);
         RaycastHit hit;
         if(Physics.Raycast(playerCam.transform.position, transform.forward, out hit, range)){

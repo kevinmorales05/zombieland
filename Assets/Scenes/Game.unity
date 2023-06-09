@@ -3462,6 +3462,7 @@ GameObject:
   - component: {fileID: 5755982643528274653}
   - component: {fileID: 5755982643528274655}
   - component: {fileID: 5755982643528274656}
+  - component: {fileID: 5755982643528274657}
   m_Layer: 0
   m_Name: First_Person_Player
   m_TagString: Player
@@ -3580,6 +3581,19 @@ MonoBehaviour:
   jumpHeight: 2
   cameraSensitivity: 10
   characterCamera: {fileID: 8950662434428961333}
+--- !u!135 &5755982643528274657
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5734261629144277785}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!4 &5771363024124953263
 Transform:
   m_ObjectHideFlags: 0
