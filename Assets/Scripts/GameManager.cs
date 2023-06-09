@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject pauseMenu;
 
+    public Animator blackScreenAnimator;
+
 
     // Start is called before the first frame update
     void Start()
@@ -81,9 +83,10 @@ public class GameManager : MonoBehaviour
     public void Continue()
     {
         pauseMenu.SetActive(false);
+        AudioListener.volume = 1;
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
-        AudioListener.volume = 1;
+       
 
 
     }
@@ -91,7 +94,13 @@ public class GameManager : MonoBehaviour
     public void goMainMenu()
     {
         Time.timeScale = 1;
-        AudioListener.volume = 0;
-        SceneManager.LoadScene(0);
+        AudioListener.volume = 1;
+        blackScreenAnimator.SetTrigger("fadeIn");
+        Invoke("LoadMainMenuScene", 0.4f);
+       
+    }
+    public void LoadMainMenuScene() 
+    {
+         SceneManager.LoadScene(0);
     }
 }
